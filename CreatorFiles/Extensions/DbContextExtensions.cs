@@ -5,9 +5,9 @@ namespace CreatorFiles.Extensions;
 
 public static class DbContextExtensions
 {
-    public static IServiceCollection AddDatabase(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddDatabase(this IServiceCollection services)
     {
-        var connectionString = configuration.GetConnectionString("AppConnection");
+        var connectionString = "Server=.\\SQLEXPRESS;Database=WindowsBackgroundServices;Trusted_Connection=True;MultipleActiveResultSets=true;Integrated Security=True;";
         services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlServer(connectionString, b => b.MigrationsAssembly("Data")));
 

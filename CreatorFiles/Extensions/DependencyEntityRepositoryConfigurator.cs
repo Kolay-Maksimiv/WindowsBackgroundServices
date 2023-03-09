@@ -10,7 +10,7 @@ public static partial class DependencyСonfigurator
     public static void AddEntityRepositories(this IServiceCollection services)
     {
         services.AddScoped<IFileDataRepository, FileDataRepository>();
-        services.AddScoped<IFileInfoRepository, IFileInfoRepository>();
+        services.AddScoped<IFileInfoRepository, FileInfoRepository>();
     }
 
     public static void AddGenericRepository(this IServiceCollection services)
