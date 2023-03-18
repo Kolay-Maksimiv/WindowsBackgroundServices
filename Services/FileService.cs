@@ -3,6 +3,7 @@ using Data.Entities;
 using Data.Enums;
 using Data.Models;
 using DocumentFormat.OpenXml;
+using DocumentFormat.OpenXml.Drawing.Charts;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
 using Microsoft.EntityFrameworkCore;
@@ -79,6 +80,33 @@ public class FileService : IFileService
         }
 
         _logger.LogInformation($"Finish parser excel files sevice {DateTime.Now:dd/MM/yyyy hh:mm}");
+    }
+
+    public void CreateGraphExcelFile(object state)
+    {
+        _logger.LogInformation($"Graph excel file started {DateTime.Now:dd/MM/yyyy hh:mm}");
+
+        var data = GetData();
+
+        GenerateChart(data);
+
+    }
+
+    private void GenerateChart(List<FileData> datas)
+    {
+
+    }
+
+    private List<FileData> GetData()
+    {
+        var dataList = new List<FileData>();
+
+        using (ApplicationDbContext dbContext = new ApplicationDbContext())
+        {
+            dataList = dbContext.FileDatas.ToList();
+        }
+
+        return dataList;
     }
 
     private List<DataModel> ParseFile(string filePath)
@@ -213,5 +241,6 @@ public class FileService : IFileService
 public interface IFileService
 {
     public void CreateExcelFile(object? state);
+    public void CreateGraphExcelFile(object state);
     public void ParseExcelFile(object? state);
 }
