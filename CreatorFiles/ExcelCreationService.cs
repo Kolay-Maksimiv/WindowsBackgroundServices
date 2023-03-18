@@ -1,6 +1,3 @@
-using DocumentFormat.OpenXml;
-using DocumentFormat.OpenXml.Packaging;
-using DocumentFormat.OpenXml.Spreadsheet;
 using Services;
 
 public class ExcelCreationService : IHostedService, IDisposable
@@ -14,7 +11,7 @@ public class ExcelCreationService : IHostedService, IDisposable
 
     public Task StartAsync(CancellationToken cancellationToken)
     {
-        _timer = new Timer(_fileService.CreateExcelFile, null, TimeSpan.Zero, TimeSpan.FromMinutes(5));
+        _timer = new Timer(_fileService.CreateExcelFile, null, TimeSpan.Zero, TimeSpan.FromMinutes(1));
         return Task.CompletedTask;
     }
 

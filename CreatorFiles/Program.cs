@@ -10,8 +10,6 @@ IHost host = Host.CreateDefaultBuilder(args)
     {
         services.AddHostedService<ExcelCreationService>();
         services.AddDatabase();
-        services.AddEntityRepositories();
-        services.AddUnitOfWork();
         services.AddSingleton<IFileService, FileService>();
 
     })

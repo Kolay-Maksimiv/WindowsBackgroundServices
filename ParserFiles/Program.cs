@@ -11,12 +11,8 @@ IHost host = Host.CreateDefaultBuilder(args)
     {
         services.AddHostedService<ExcelParserService>();
         services.AddDatabase();
-        services.AddEntityRepositories();
-        services.AddUnitOfWork();
         services.AddSingleton<IFileService, FileService>();
-
     })
     .Build();
-
 
 await host.RunAsync();
